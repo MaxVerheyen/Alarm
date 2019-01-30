@@ -116,9 +116,9 @@
             }
             setTimeout(alarm, 1000); // voer function toontijd  binnen 1000 milliseconden uit
         };
-        
+
         function reset(){
-            let options = document.querySelectorAll('select').childNodes;
+            let options = Array.from(document.querySelectorAll('select'));
             console.log(options);
             for(let i = 0; i < options.length; i++){
                 options[i].disabled = true;
