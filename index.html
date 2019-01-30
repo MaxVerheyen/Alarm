@@ -39,11 +39,11 @@
         <p>Om hoelaat wil je opstaan?</p>
         <select id="uren"></select>
         <select id="minuten"></select>
-        <button id="alarm" onclick="alarm(), disable()">Zet alarm</button>
-        <button id="reset" onclick="reset()">Reset</button>
+        <button id="alarm">Zet alarm</button>
+        <button id="reset">Reset</button>
         <div id="klokbalk"></div>
         <script>
-        window.onload = function activate(){
+        window.addEventListener('load', function activate(){
             var maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
             var dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
     
@@ -98,12 +98,14 @@
             };
             toonTijd();
             toonSelect();
-        };
+        });
+
         let video = document.getElementById("video");
         let alarmUren = document.getElementById("uren");
         let alarmMinuten = document.getElementById("minuten");
 
         function alarm(){
+            console.log(alarmUren.value);
             let nu = new Date();
             let uren = nu.getHours();
             if (uren <= 9){
@@ -115,7 +117,7 @@
             };
             if(uren == alarmUren.value && minuten == alarmMinuten.value){
                 window.location.href = video.value;
-            }
+            };
             setTimeout(alarm, 1000); // voer function alarm binnen 1000 milliseconden uit
         };
 
@@ -124,17 +126,30 @@
             for(let i = 0; i < select.length; i++){
                 select[i].disabled = true;
             }
-        }
+        };
 
-        function reset(){
+        function enable(){
             let select = Array.from(document.querySelectorAll('select'));
             for(let i = 0; i < select.length; i++){
                 select[i].disabled = false;
             }
+        };
+
+        function reset(){
             video.value = "https://www.youtube.com/watch?v=JZBIfO1FbqE&start_radio=1&list=RDJZBIfO1FbqE";
             alarmUren.value = "00";
             alarmMinuten.value = "00";
-        }
+        };
+
+        document.getElementById("alarm").addEventListener("click", function activate(){
+            alarm();
+            disable();
+        });
+
+        document.getElementById("reset").addEventListener("click",function deactivate(){
+            reset();
+            enable();
+        });
         </script>
     </body>
 </html>
