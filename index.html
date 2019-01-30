@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Klok</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/png" href="tag.png"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <style>
+            body{
+                color: white;
+                background-color:rgba(19,19,19);
+                font-family:'Open Sans', sans-serif;
+            }
+            #klokbalk{
+                font-size: xx-large;
+                cursor:default;
+                position:absolute;
+                top:50%;
+                left:50%;
+                transform:translate(-50%,-50%);
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <p>Met welke Youtube video wil je wakker worden?</p>
+        <input id="video" value="https://www.youtube.com/watch?v=JZBIfO1FbqE&start_radio=1&list=RDJZBIfO1FbqE"></input>
+        <p>Om hoelaat wil je opstaan?</p>
+        <select id="uren"></select>
+        <select id="minuten"></select>
+        <button id="alarm" onclick="alarm()">Zet alarm</button>
+        <button id="reset" onclick="reset()">Reset</button>
+        <div id="klokbalk"></div>
+        <script>
+        window.onload = function activate(){
+            var maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
+            var dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
+    
+            function toontijd() {
+                var nu = new Date();
+                var jaar = nu.getFullYear();
+                var maandNr = nu.getMonth();
+                var maand = maanden[maandNr];
+                var datum = nu.getDate();
+                var dagNr = nu.getDay();
+                var dag = dagen[dagNr];
+                var uren = nu.getHours();
+                if (uren <= 9){
+                    uren = "0" + uren;
+                };
+                var minuten = nu.getMinutes();
+                if (minuten <= 9){
+                    minuten = "0" + minuten;
+                };
+                var seconden = nu.getSeconds();
+                if (seconden <= 9){
+                    seconden = "0" + seconden;
+                };
+                var tijdWaarde = dag + " " + datum + " " + maand + " " + jaar + " " + uren + ":" + minuten+":"+seconden;
+                document.getElementById("klokbalk").innerHTML = tijdWaarde;
+                setTimeout(toontijd, 1000); // voer function toontijd  binnen 1000 milliseconden uit
+            };
+    
+            function toonselect() {
+                for(let i = 0; i < 24; i++){
+                    let option = document.createElement("option");
+                    if(i <= 9){
+                        option.value = "0"+i;
+                        option.innerHTML = "0"+i;
+                    }else{
+                        option.value = i;
+                        option.innerHTML = i;
+                    };
+                    document.getElementById("uren").appendChild(option);
+                };
+                for(let i = 0; i < 60; i++){
+                    let option = document.createElement("option");
+                    if(i <= 9){
+                        option.value = "0"+i;
+                        option.innerHTML = "0"+i;
+                    }else{
+                        option.value = i;
+                        option.innerHTML = i;
+                    };
+                    document.getElementById("minuten").appendChild(option);
+                };
+            };
+            toontijd();
+            toonselect();
+        };
+
+        function alarm(){
+            let video = document.getElementById("video").value;
+            let alarmUren = document.getElementById("uren").value;
+            let alarmMinuten = document.getElementById("minuten").value;
+            let nu = new Date();
+            let uren = nu.getHours();
+            if (uren <= 9){
+                uren = "0" + uren;
+            };
+            let minuten = nu.getMinutes();
+            if (minuten <= 9){
+                minuten = "0" + minuten;
+            };
+            if(uren == alarmUren && minuten == alarmMinuten){
+                console.log("true");
+                window.location.href = video;
+            }
+            setTimeout(alarm, 1000); // voer function toontijd  binnen 1000 milliseconden uit
+        };
+        
+        function reset(){
+            let options = document.querySelectorAll('select').childNodes;
+            console.log(options);
+            for(let i = 0; i < options.length; i++){
+                options[i].disabled = true;
+            }
+            console.log(options);
+        }
+        </script>
+    </body>
+</html>
