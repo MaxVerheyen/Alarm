@@ -35,18 +35,17 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <p>Met welke Youtube video wil je wakker worden?</p>
-        <input id="video" value="https://www.youtube.com/watch?v=IvwAJxM2O6Y&index=14&list=RDJZBIfO1FbqE"></input>
+        <input id="video" value="https://www.youtube.com/watch?v=OYOpssRJApQ&index=17&list=RDJZBIfO1FbqE"></input>
         <p>Om hoelaat?</p>
         <select id="uren"></select>
         <select id="minuten"></select>
         <button id="alarm">Zet alarm</button>
         <button id="reset">Reset</button>
-        <div id="klokbalk"></div>
+        <div id="klok"></div>
         <script>
             let video = document.getElementById("video");
             let alarmUren = document.getElementById("uren");
             let alarmMinuten = document.getElementById("minuten");
-            let klok = document.getElementById("klokbalk");
             let timer;
 
             window.addEventListener("load", function activate(){
@@ -74,12 +73,12 @@
                         seconden = "0" + seconden;
                     };
                     let tijdWaarde = dag + " " + datum + " " + maand + " " + jaar + " " + uren + ":" + minuten+":"+seconden;
-                    klok.innerHTML = tijdWaarde;
+                    document.getElementById("klok").innerHTML = tijdWaarde;
                     setTimeout(showTijd, 1000);
                 };
         
-                function showOptions() {
-                    for(let i = 0; i < 24; i++){
+                function showOptions(a,b) {
+                    for(let i = 0; i < b; i++){
                         let option = document.createElement("option");
                         if(i <= 9){
                             option.value = "0"+i;
@@ -88,22 +87,12 @@
                             option.value = i;
                             option.innerHTML = i;
                         };
-                        alarmUren.appendChild(option);
-                    };
-                    for(let i = 0; i < 60; i++){
-                        let option = document.createElement("option");
-                        if(i <= 9){
-                            option.value = "0"+i;
-                            option.innerHTML = "0"+i;
-                        }else{
-                            option.value = i;
-                            option.innerHTML = i;
-                        };
-                        alarmMinuten.appendChild(option);
+                        a.appendChild(option);
                     };
                 };
                 showTijd();
-                showOptions();
+                showOptions(alarmUren,24);
+                showOptions(alarmMinuten,60);
             });
 
             function disableOptions(event){
@@ -127,10 +116,10 @@
                     if(uren == alarmUren.value && minuten == alarmMinuten.value){
                         //console.log('ALAAAAARM!')
                         window.location.href = video.value;
-                        return
+                        return // Return stopt de functie;
                     };
                     //console.log('Blijf kalm')
-                    timer = setTimeout(alarm, 1000);
+                    timer = setTimeout(alarm, 1000); // Timer is globale var, zodat ie gecleared kan worden met reset;
                 };
                 disableOptions(true);
                 alarm();
