@@ -17,6 +17,9 @@
                 background-color:rgba(19,19,19);
                 font-family:'Open Sans', sans-serif;
             }
+            select:disabled{
+                background-color:white;
+            }
             #klokbalk{
                 font-size: xx-large;
                 cursor:default;
@@ -44,7 +47,7 @@
             var maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
             var dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
     
-            function toontijd() {
+            function toonTijd() {
                 var nu = new Date();
                 var jaar = nu.getFullYear();
                 var maandNr = nu.getMonth();
@@ -66,10 +69,10 @@
                 };
                 var tijdWaarde = dag + " " + datum + " " + maand + " " + jaar + " " + uren + ":" + minuten+":"+seconden;
                 document.getElementById("klokbalk").innerHTML = tijdWaarde;
-                setTimeout(toontijd, 1000); // voer function toontijd  binnen 1000 milliseconden uit
+                setTimeout(toonTijd, 1000); // voer function toonTijd  binnen 1000 milliseconden uit
             };
     
-            function toonselect() {
+            function toonSelect() {
                 for(let i = 0; i < 24; i++){
                     let option = document.createElement("option");
                     if(i <= 9){
@@ -93,14 +96,14 @@
                     document.getElementById("minuten").appendChild(option);
                 };
             };
-            toontijd();
-            toonselect();
+            toonTijd();
+            toonSelect();
         };
+        let video = document.getElementById("video");
+        let alarmUren = document.getElementById("uren");
+        let alarmMinuten = document.getElementById("minuten");
 
         function alarm(){
-            let video = document.getElementById("video").value;
-            let alarmUren = document.getElementById("uren").value;
-            let alarmMinuten = document.getElementById("minuten").value;
             let nu = new Date();
             let uren = nu.getHours();
             if (uren <= 9){
@@ -110,8 +113,8 @@
             if (minuten <= 9){
                 minuten = "0" + minuten;
             };
-            if(uren == alarmUren && minuten == alarmMinuten){
-                window.location.href = video;
+            if(uren == alarmUren.value && minuten == alarmMinuten.value){
+                window.location.href = video.value;
             }
             setTimeout(alarm, 1000); // voer function alarm binnen 1000 milliseconden uit
         };
@@ -128,6 +131,9 @@
             for(let i = 0; i < select.length; i++){
                 select[i].disabled = false;
             }
+            video.value = "https://www.youtube.com/watch?v=JZBIfO1FbqE&start_radio=1&list=RDJZBIfO1FbqE";
+            alarmUren.value = "00";
+            alarmMinuten.value = "00";
         }
         </script>
     </body>
