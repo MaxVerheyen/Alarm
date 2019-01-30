@@ -118,11 +118,11 @@
                     };
                     let video = document.getElementById("video");
                     if(uren == alarmUren.value && minuten == alarmMinuten.value){
-                        //console.log('ALAAAAARM!');
+                        //console.log('OPSTAAAAAAN!');
                         window.location.href = video.value;
                         return // Return stopt de functie;
                     };
-                    //console.log('Blijf kalm');
+                    //console.log('Blijf slapen');
                     timer = setTimeout(alarm, 1000); // Timer is globale var, zodat ie gecleared kan worden met reset;
                 };
                 disableOptions(true);
