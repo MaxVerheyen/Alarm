@@ -103,6 +103,7 @@
         let video = document.getElementById("video");
         let alarmUren = document.getElementById("uren");
         let alarmMinuten = document.getElementById("minuten");
+        let timer;
 
         function alarm(){
             console.log(alarmUren.value);
@@ -118,37 +119,31 @@
             if(uren == alarmUren.value && minuten == alarmMinuten.value){
                 window.location.href = video.value;
             };
-            setTimeout(alarm, 1000); // voer function alarm binnen 1000 milliseconden uit
-        };
-
-        function disable(){
-            let select = Array.from(document.querySelectorAll('select'));
-            for(let i = 0; i < select.length; i++){
-                select[i].disabled = true;
-            }
-        };
-
-        function enable(){
-            let select = Array.from(document.querySelectorAll('select'));
-            for(let i = 0; i < select.length; i++){
-                select[i].disabled = false;
-            }
+            timer = setTimeout(alarm, 1000); // voer function alarm binnen 1000 milliseconden uit
         };
 
         function reset(){
             video.value = "https://www.youtube.com/watch?v=JZBIfO1FbqE&start_radio=1&list=RDJZBIfO1FbqE";
             alarmUren.value = "00";
             alarmMinuten.value = "00";
+            clearInterval(timer);
+        };
+
+        function disable(e){
+            let select = Array.from(document.querySelectorAll('select'));
+            for(let i = 0; i < select.length; i++){
+                select[i].disabled = e;
+            };
         };
 
         document.getElementById("alarm").addEventListener("click", function activate(){
             alarm();
-            disable();
+            disable(true);
         });
 
         document.getElementById("reset").addEventListener("click",function deactivate(){
             reset();
-            enable();
+            disable(false);
         });
         </script>
     </body>
