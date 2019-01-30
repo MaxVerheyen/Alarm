@@ -36,7 +36,7 @@
         <p>Om hoelaat wil je opstaan?</p>
         <select id="uren"></select>
         <select id="minuten"></select>
-        <button id="alarm" onclick="alarm()">Zet alarm</button>
+        <button id="alarm" onclick="alarm(), disable()">Zet alarm</button>
         <button id="reset" onclick="reset()">Reset</button>
         <div id="klokbalk"></div>
         <script>
@@ -111,19 +111,23 @@
                 minuten = "0" + minuten;
             };
             if(uren == alarmUren && minuten == alarmMinuten){
-                console.log("true");
                 window.location.href = video;
             }
-            setTimeout(alarm, 1000); // voer function toontijd  binnen 1000 milliseconden uit
+            setTimeout(alarm, 1000); // voer function alarm binnen 1000 milliseconden uit
         };
 
-        function reset(){
-            let options = Array.from(document.querySelectorAll('select'));
-            console.log(options);
-            for(let i = 0; i < options.length; i++){
-                options[i].disabled = true;
+        function disable(){
+            let select = Array.from(document.querySelectorAll('select'));
+            for(let i = 0; i < select.length; i++){
+                select[i].disabled = true;
             }
-            console.log(options);
+        }
+
+        function reset(){
+            let select = Array.from(document.querySelectorAll('select'));
+            for(let i = 0; i < select.length; i++){
+                select[i].disabled = false;
+            }
         }
         </script>
     </body>
