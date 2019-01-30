@@ -97,10 +97,13 @@
                 };
             };
 
-            let video = document.getElementById("video");
             let alarmUren = document.getElementById("uren");
             let alarmMinuten = document.getElementById("minuten");
             let timer;
+
+            document.getElementById("video").addEventListener("focus",function onfocus(){
+                document.getElementById("video").value = "";
+            });
 
             document.getElementById("alarm").addEventListener("click",function activate(){
                 function alarm(){
@@ -113,7 +116,7 @@
                     if (minuten <= 9){
                         minuten = "0" + minuten;
                     };
-                    let video = document.getElementById("video").value;
+                    let video = document.getElementById("video");
                     if(uren == alarmUren.value && minuten == alarmMinuten.value){
                         //console.log('ALAAAAARM!');
                         window.location.href = video.value;
@@ -134,10 +137,6 @@
                 };
                 disableOptions(false);
                 reset();
-            });
-
-            document.getElementById("video").addEventListener("focus",function onfocus(){
-                video.value = "";
             });
         </script>
     </body>
