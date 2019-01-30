@@ -35,7 +35,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <p>Met welke Youtube video wil je wakker worden?</p>
-        <input id="video" value="https://www.youtube.com/watch?v=JZBIfO1FbqE&start_radio=1&list=RDJZBIfO1FbqE"></input>
+        <input id="video" value="https://www.youtube.com/watch?v=IvwAJxM2O6Y&index=14&list=RDJZBIfO1FbqE"></input>
         <p>Om hoelaat?</p>
         <select id="uren"></select>
         <select id="minuten"></select>
@@ -46,7 +46,7 @@
             let video = document.getElementById("video");
             let alarmUren = document.getElementById("uren");
             let alarmMinuten = document.getElementById("minuten");
-            let klok = document.getElementById("klokbalk")
+            let klok = document.getElementById("klokbalk");
             let timer;
 
             window.addEventListener("load", function activate(){
@@ -106,31 +106,6 @@
                 toonOptions();
             });
 
-            function alarm(){
-                let nu = new Date();
-                let uren = nu.getHours();
-                if (uren <= 9){
-                    uren = "0" + uren;
-                };
-                let minuten = nu.getMinutes();
-                if (minuten <= 9){
-                    minuten = "0" + minuten;
-                };
-                if(uren == alarmUren.value && minuten == alarmMinuten.value){
-                    //console.log('ALAAAAARM!')
-                    window.location.href = video.value;
-                    return
-                };
-                //console.log('Blijf kalm')
-                timer = setTimeout(alarm, 1000);
-            };
-
-            function reset(){
-                clearInterval(timer);
-                alarmUren.value = "00";
-                alarmMinuten.value = "00";
-            };
-
             function disable(event){
                 let select = Array.from(document.querySelectorAll('select'));
                 for(let i = 0; i < select.length; i++){
@@ -139,11 +114,38 @@
             };
 
             document.getElementById("alarm").addEventListener("click", function activate(){
+
+                function alarm(){
+                    let nu = new Date();
+                    let uren = nu.getHours();
+                    if (uren <= 9){
+                        uren = "0" + uren;
+                    };
+                    let minuten = nu.getMinutes();
+                    if (minuten <= 9){
+                        minuten = "0" + minuten;
+                    };
+                    if(uren == alarmUren.value && minuten == alarmMinuten.value){
+                        //console.log('ALAAAAARM!')
+                        window.location.href = video.value;
+                        return
+                    };
+                    //console.log('Blijf kalm')
+                    timer = setTimeout(alarm, 1000);
+                };
+
                 alarm();
                 disable(true);
             });
 
             document.getElementById("reset").addEventListener("click",function deactivate(){
+
+                function reset(){
+                    clearInterval(timer);
+                    alarmUren.value = "00";
+                    alarmMinuten.value = "00";
+                };
+
                 disable(false);
                 reset();
             });
