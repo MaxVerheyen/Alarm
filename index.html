@@ -53,7 +53,7 @@
                 let maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
                 let dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
         
-                function toonTijd() {
+                function showTijd() {
                     let nu = new Date();
                     let jaar = nu.getFullYear();
                     let maandNr = nu.getMonth();
@@ -75,10 +75,10 @@
                     };
                     let tijdWaarde = dag + " " + datum + " " + maand + " " + jaar + " " + uren + ":" + minuten+":"+seconden;
                     klok.innerHTML = tijdWaarde;
-                    setTimeout(toonTijd, 1000);
+                    setTimeout(showTijd, 1000);
                 };
         
-                function toonOptions() {
+                function showOptions() {
                     for(let i = 0; i < 24; i++){
                         let option = document.createElement("option");
                         if(i <= 9){
@@ -102,11 +102,11 @@
                         alarmMinuten.appendChild(option);
                     };
                 };
-                toonTijd();
-                toonOptions();
+                showTijd();
+                showOptions();
             });
 
-            function disable(event){
+            function disableOptions(event){
                 let select = Array.from(document.querySelectorAll('select'));
                 for(let i = 0; i < select.length; i++){
                     select[i].disabled = event;
@@ -114,7 +114,6 @@
             };
 
             document.getElementById("alarm").addEventListener("click", function activate(){
-
                 function alarm(){
                     let nu = new Date();
                     let uren = nu.getHours();
@@ -133,20 +132,17 @@
                     //console.log('Blijf kalm')
                     timer = setTimeout(alarm, 1000);
                 };
-
+                disableOptions(true);
                 alarm();
-                disable(true);
             });
 
             document.getElementById("reset").addEventListener("click",function deactivate(){
-
                 function reset(){
                     clearInterval(timer);
                     alarmUren.value = "00";
                     alarmMinuten.value = "00";
                 };
-
-                disable(false);
+                disableOptions(false);
                 reset();
             });
         </script>
