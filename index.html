@@ -17,16 +17,16 @@
                 background-color:rgba(19,19,19);
                 font-family:'Open Sans', sans-serif;
             }
-            select:disabled{
-                background-color:white;
-            }
-            #klokbalk{
+            #klok{
                 font-size:xx-large;
                 cursor:default;
                 position:absolute;
                 top:50%;
                 left:50%;
                 transform:translate(-50%,-50%);
+            }
+            select:disabled{
+                background-color:white;
             }
         </style>
     </head>
@@ -114,11 +114,11 @@
                     };
                     let video = document.getElementById("video").value;
                     if(uren == alarmUren.value && minuten == alarmMinuten.value){
-                        console.log('ALAAAAARM!')
-                        //window.location.href = video;
+                        //console.log('ALAAAAARM!')
+                        window.location.href = video;
                         return // Return stopt de functie;
                     };
-                    console.log('Blijf kalm')
+                    //console.log('Blijf kalm')
                     timer = setTimeout(alarm, 1000); // Timer is globale var, zodat ie gecleared kan worden met reset;
                 };
                 disableOptions(true);
