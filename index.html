@@ -43,7 +43,7 @@
         <button id="reset">Reset</button>
         <div id="klok"></div>
         <script>
-            window.addEventListener("load", function activate(){
+            window.addEventListener("load", function(){
                 let maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
                 let dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
 
@@ -91,7 +91,7 @@
             });
 
             function disableOptions(e){
-                let select = Array.from(document.querySelectorAll("select"));
+                let select = document.querySelectorAll("select");
                 for(let i = 0; i < select.length; i++){
                     select[i].disabled = e;
                 };
@@ -101,11 +101,11 @@
             let alarmMinuten = document.getElementById("minuten");
             let timer;
 
-            document.getElementById("video").addEventListener("focus",function onfocus(){
+            document.getElementById("video").addEventListener("focus",function(){
                 document.getElementById("video").value = "";
             });
 
-            document.getElementById("alarm").addEventListener("click",function activate(){
+            document.getElementById("alarm").addEventListener("click",function(){
                 function alarm(){
                     let nu = new Date();
                     let uren = nu.getHours();
@@ -129,7 +129,7 @@
                 alarm();
             });
 
-            document.getElementById("reset").addEventListener("click",function deactivate(){
+            document.getElementById("reset").addEventListener("click",function(){
                 function reset(){
                     clearInterval(timer); // Stopt de alarm functie;
                     alarmUren.value = "00";
