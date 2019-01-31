@@ -47,7 +47,7 @@
                 let maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
                 let dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
 
-                function showTijd(){
+                function showTime(){
                     let nu = new Date();
                     let jaar = nu.getFullYear();
                     let maandNr = nu.getMonth();
@@ -85,7 +85,7 @@
                         a.appendChild(option);
                     };
                 };
-                showTijd();
+                showTime();
                 showOptions(alarmUren,24);
                 showOptions(alarmMinuten,60);
             });
