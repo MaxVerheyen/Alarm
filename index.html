@@ -120,10 +120,10 @@
                     if(uren == alarmUren.value && minuten == alarmMinuten.value){
                         //console.log('OPSTAAAAAAN!');
                         window.location.href = video.value;
-                        return // Stopt de alarm functie;
+                        return// Stopt de alarm functie;
                     };
                     //console.log('Blijf slapen');
-                    timer = setTimeout(alarm, 1000); // Timer is globale var, omdat hij gecleared moet worden met reset functie;
+                    timer = setTimeout(alarm, 1000);// Timer is globale var, omdat hij gecleared moet worden met reset functie;
                 };
                 disableOptions(true);
                 alarm();
@@ -131,7 +131,7 @@
 
             document.getElementById("reset").addEventListener("click",function(){
                 function reset(){
-                    clearInterval(timer); // Stopt de alarm functie;
+                    clearInterval(timer);// Stopt de alarm functie;
                     alarmUren.value = "00";
                     alarmMinuten.value = "00";
                 };
