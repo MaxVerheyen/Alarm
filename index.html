@@ -96,12 +96,13 @@
                     select[i].disabled = e;
                 };
             };
-
+            
+            let video = document.getElementById("video");
             let alarmUren = document.getElementById("uren");
             let alarmMinuten = document.getElementById("minuten");
             let timer;
 
-            document.getElementById("video").addEventListener("focus",function(){
+            video.addEventListener("focus",function(){
                 this.value = "";
             });
 
@@ -116,7 +117,6 @@
                     if (minuten <= 9){
                         minuten = "0" + minuten;
                     };
-                    let video = document.getElementById("video");
                     if(uren == alarmUren.value && minuten == alarmMinuten.value){
                         //console.log('OPSTAAAAAAN!');
                         window.location.href = video.value;
@@ -125,6 +125,7 @@
                     //console.log('Blijf slapen');
                     timer = setTimeout(alarm, 1000);// Timer is globale var, omdat hij gecleared moet worden met reset functie;
                 };
+                video.setAttribute("disabled","");
                 disableOptions(true);
                 alarm();
             });
@@ -135,6 +136,7 @@
                     alarmUren.value = "00";
                     alarmMinuten.value = "00";
                 };
+                video.removeAttribute("disabled");
                 disableOptions(false);
                 reset();
             });
