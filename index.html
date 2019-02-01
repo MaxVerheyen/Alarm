@@ -103,7 +103,6 @@
                 this.value = last known value met localstorage?;
             });
             */ 
-
             document.getElementById("alarm").addEventListener("click",function(){
                 function alarm(){
                     let nu = new Date();
@@ -130,9 +129,9 @@
 
             document.getElementById("reset").addEventListener("click",function(){
                 function reset(){
-                    clearInterval(timer);// Stop de alarm functie.
                     alarmUren.value = "00";
                     alarmMinuten.value = "00";
+                    clearInterval(timer);// Stop de alarm functie.
                 };  
                 video.value = "https://www.youtube.com/watch?v=iNpXCzaWW1s";// Voorlopig.
                 video.removeAttribute("disabled");
