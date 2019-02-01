@@ -90,13 +90,6 @@
                 showOptions(alarmMinuten,60);
             });
 
-            function disableOptions(e){
-                let select = document.querySelectorAll("select");
-                for(let i = 0; i < select.length; i++){
-                    select[i].disabled = e;
-                };
-            };
-            
             let video = document.getElementById("video");
             let alarmUren = document.getElementById("uren");
             let alarmMinuten = document.getElementById("minuten");
@@ -104,6 +97,10 @@
 
             video.addEventListener("focus",function(){
                 this.value = "";
+            });
+
+            video.addEventListener("focusout",function(){
+                this.value = "https://www.youtube.com/watch?v=iNpXCzaWW1s";
             });
 
             document.getElementById("alarm").addEventListener("click",function(){
@@ -140,6 +137,13 @@
                 disableOptions(false);
                 reset();
             });
+
+            function disableOptions(e){
+                let select = document.querySelectorAll("select");
+                for(let i = 0; i < select.length; i++){
+                    select[i].disabled = e;
+                };
+            };
         </script>
     </body>
 </html>
