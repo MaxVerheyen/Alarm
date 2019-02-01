@@ -44,8 +44,8 @@
         <div id="klok"></div>
         <script>
             window.addEventListener("load", function(){
-                let maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
-                let dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
+                const maanden = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"];
+                const dagen = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
 
                 function showTime(){
                     let nu = new Date();
@@ -99,9 +99,12 @@
                 this.value = "";
             });
 
+            // Mischien laatste video-value opslaan in localstorage;
+            /*
             video.addEventListener("focusout",function(){
                 this.value = "https://www.youtube.com/watch?v=iNpXCzaWW1s";
             });
+            */ 
 
             document.getElementById("alarm").addEventListener("click",function(){
                 function alarm(){
