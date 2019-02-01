@@ -100,7 +100,7 @@
             });
             /*
             video.addEventListener("focusout",function(){
-                this.value = "https://www.youtube.com/watch?v=iNpXCzaWW1s";
+                this.value = last known value met localstorage?;
             });
             */ 
 
@@ -118,10 +118,10 @@
                     if(uren == alarmUren.value && minuten == alarmMinuten.value){
                         //console.log('OPSTAAAAAAN!');
                         window.location.href = video.value;
-                        return// Stopt de alarm functie;
+                        return// Stop de alarm functie.
                     };
                     //console.log('Blijf slapen');
-                    timer = setTimeout(alarm, 1000);// Timer is globale var, omdat hij gecleared moet worden met reset functie;
+                    timer = setTimeout(alarm, 1000);// Timer is globale var, omdat hij gecleared moet worden met reset functie.
                 };
                 video.setAttribute("disabled","");
                 disableOptions(true);
@@ -130,10 +130,11 @@
 
             document.getElementById("reset").addEventListener("click",function(){
                 function reset(){
-                    clearInterval(timer);// Stopt de alarm functie;
+                    clearInterval(timer);// Stop de alarm functie.
                     alarmUren.value = "00";
                     alarmMinuten.value = "00";
-                };
+                };  
+                video.value = "https://www.youtube.com/watch?v=iNpXCzaWW1s";// Voorlopig.
                 video.removeAttribute("disabled");
                 disableOptions(false);
                 reset();
