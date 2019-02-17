@@ -22,8 +22,8 @@ window.addEventListener("load", function(){
         if (seconden <= 9){
             seconden = "0" + seconden;
         };
-        let tijdWaarde = dag + " " + datum + " " + maand + " " + jaar + " " + uren + ":" + minuten + ":" + seconden;
-        document.getElementById("klok").innerHTML = tijdWaarde;
+        let datumWaarde = dag + " " + datum + " " + maand + " " + jaar + " " + uren + ":" + minuten + ":" + seconden;
+        document.getElementById("klok").innerHTML = datumWaarde;
         setTimeout(showTime, 1000);
     };
 
