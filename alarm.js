@@ -51,13 +51,17 @@ let alarmMinuten = document.getElementById("minuten");
 let timer;
 
 video.addEventListener("focus",function(){
+    localStorage.setItem("test",this.value);
     this.value = "";
 });
-/*
+
 video.addEventListener("focusout",function(){
-    this.value = last known value met localstorage?;
+    if(this.value == ""){
+        this.value = localStorage.getItem("test");
+    };
+    localStorage.removeItem("test");
 });
-*/ 
+
 document.getElementById("alarm").addEventListener("click",function(){
     function alarm(){
         let nu = new Date();
